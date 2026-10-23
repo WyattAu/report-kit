@@ -57,30 +57,34 @@ pub struct IncomeStatement {
     pub expenses: StatementClassTotals,
 }
 
+/// The accounts of one class, in one currency, at normal-side net.
+fn class_lines(tb: &TrialBalance, currency: &str, class: AccountType) -> StatementClassTotals {
+    StatementClassTotals {
+        class,
+        lines: tb
+            .rows_for(currency)
+            .into_iter()
+            .filter(|r| r.account_type == class)
+            .map(|r| {
+                let net = if r.account_type.increases_on_debit() {
+                    r.net()
+                } else {
+                    -r.net()
+                };
+                (r.account_id.clone(), r.account_name.clone(), net)
+            })
+            .collect(),
+    }
+}
+
 impl IncomeStatement {
     /// Derive the P&L for `currency` from the trial balance.
     #[must_use]
     pub fn from_trial_balance(tb: &TrialBalance, currency: &str) -> Self {
-        let mut lines_for = |class: AccountType| StatementClassTotals {
-            class,
-            lines: tb
-                .rows_for(currency)
-                .into_iter()
-                .filter(|r| r.account_type == class)
-                .map(|r| {
-                    let net = if r.account_type.increases_on_debit() {
-                        r.net()
-                    } else {
-                        -r.net()
-                    };
-                    (r.account_id.clone(), r.account_name.clone(), net)
-                })
-                .collect(),
-        };
         Self {
             currency: currency.to_string(),
-            revenue: lines_for(AccountType::Revenue),
-            expenses: lines_for(AccountType::Expense),
+            revenue: class_lines(tb, currency, AccountType::Revenue),
+            expenses: class_lines(tb, currency, AccountType::Expense),
         }
     }
 
@@ -126,27 +130,11 @@ impl BalanceSheet {
     #[must_use]
     pub fn from_trial_balance(tb: &TrialBalance, currency: &str) -> Self {
         let pl = IncomeStatement::from_trial_balance(tb, currency);
-        let mut lines_for = |class: AccountType| StatementClassTotals {
-            class,
-            lines: tb
-                .rows_for(currency)
-                .into_iter()
-                .filter(|r| r.account_type == class)
-                .map(|r| {
-                    let net = if r.account_type.increases_on_debit() {
-                        r.net()
-                    } else {
-                        -r.net()
-                    };
-                    (r.account_id.clone(), r.account_name.clone(), net)
-                })
-                .collect(),
-        };
         Self {
             currency: currency.to_string(),
-            assets: lines_for(AccountType::Asset),
-            liabilities: lines_for(AccountType::Liability),
-            equity: lines_for(AccountType::Equity),
+            assets: class_lines(tb, currency, AccountType::Asset),
+            liabilities: class_lines(tb, currency, AccountType::Liability),
+            equity: class_lines(tb, currency, AccountType::Equity),
             retained_result: pl.result(),
         }
     }
