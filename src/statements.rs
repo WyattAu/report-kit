@@ -212,8 +212,14 @@ mod tests {
                     "2026-07-01",
                     "2026-07",
                     vec![
-                        Line::debit("1000", double_entry::Amount::minor(500_000, currencies::GBP)),
-                        Line::credit("3100", double_entry::Amount::minor(500_000, currencies::GBP)),
+                        Line::debit(
+                            "1000",
+                            double_entry::Amount::minor(500_000, currencies::GBP),
+                        ),
+                        Line::credit(
+                            "3100",
+                            double_entry::Amount::minor(500_000, currencies::GBP),
+                        ),
                     ],
                 ),
                 v,
@@ -227,8 +233,14 @@ mod tests {
                     "2026-07-02",
                     "2026-07",
                     vec![
-                        Line::debit("1100", double_entry::Amount::minor(144_000, currencies::GBP)),
-                        Line::credit("4000", double_entry::Amount::minor(120_000, currencies::GBP)),
+                        Line::debit(
+                            "1100",
+                            double_entry::Amount::minor(144_000, currencies::GBP),
+                        ),
+                        Line::credit(
+                            "4000",
+                            double_entry::Amount::minor(120_000, currencies::GBP),
+                        ),
                         Line::credit("2100", double_entry::Amount::minor(24_000, currencies::GBP)),
                     ],
                 ),
@@ -320,8 +332,14 @@ mod tests {
                     "2026-07-01",
                     "2026-07",
                     vec![
-                        Line::debit("1000", double_entry::Amount::minor(100_000, currencies::GBP)),
-                        Line::credit("3100", double_entry::Amount::minor(100_000, currencies::GBP)),
+                        Line::debit(
+                            "1000",
+                            double_entry::Amount::minor(100_000, currencies::GBP),
+                        ),
+                        Line::credit(
+                            "3100",
+                            double_entry::Amount::minor(100_000, currencies::GBP),
+                        ),
                     ],
                 ),
                 0,
@@ -404,7 +422,11 @@ mod tests {
 
         let tb = TrialBalance::from_ledger(&ledger, "2026-07-31");
         let pl = IncomeStatement::from_trial_balance(&tb, "GBP");
-        assert_eq!(pl.total_revenue(), 50_000, "the USD sale stays out of the GBP P&L");
+        assert_eq!(
+            pl.total_revenue(),
+            50_000,
+            "the USD sale stays out of the GBP P&L"
+        );
         let sheet = BalanceSheet::from_trial_balance(&tb, "USD");
         assert_eq!(sheet.total_assets(), 60_000);
     }
