@@ -186,6 +186,7 @@ impl BalanceSheet {
 #[allow(clippy::expect_used, clippy::panic)]
 mod tests {
     use super::*;
+    use double_entry::Ledger;
     use double_entry::money::currencies;
     use double_entry::{Account, JournalEntry, Line};
 

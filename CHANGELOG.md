@@ -7,6 +7,12 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ## [0.2.0] - 2026-10-07
 
+Published in error: the statements module existed as a file but was never
+wired into `lib.rs`, so this release contained only 0.1.0's surface. Recorded
+here so nobody trusts the version number — the feature is 0.2.1.
+
+## [0.2.1] - 2026-10-07
+
 ### Added
 
 - `IncomeStatement` — revenue and expenses itemised per account, and the
