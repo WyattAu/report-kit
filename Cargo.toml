@@ -1,0 +1,20 @@
+[package]
+name = "report-kit"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Trial balance and aging reports over a double-entry ledger — per-currency by construction, with the accounting equation as a runtime check"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/WyattAu/report-kit"
+keywords = ["accounting", "reporting", "finance", "ledger", "trial-balance"]
+categories = ["finance", "data-structures"]
+exclude = ["/target"]
+
+[dependencies]
+double-entry = "=0.1.0"
+
+[lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+indexing_slicing = "deny"
+panic = "deny"
