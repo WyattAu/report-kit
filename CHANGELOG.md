@@ -5,6 +5,24 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-07
+
+### Added
+
+- `IncomeStatement` — revenue and expenses itemised per account, and the
+  period's result.
+- `BalanceSheet` — assets, liabilities, posted equity, and the period's
+  **retained result** carried where it actually is. A balance sheet drawn
+  mid-period does not satisfy `assets == liabilities + equity` because the
+  profit is still sitting in the revenue and expense accounts; the honest
+  statement is `assets == liabilities + equity + retained result`, and the
+  retained result is the P&L's result by construction — one trial balance,
+  two statements, so a profit on one that is missing from the other cannot be
+  expressed.
+- `is_balanced` refuses to plug an "unexplained difference" line: the sheet
+  balances or it does not.
+
+
 ## [0.1.0] - 2026-10-07
 
 Initial release.
