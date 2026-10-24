@@ -1,6 +1,6 @@
 [package]
 name = "report-kit"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2024"
 rust-version = "1.85"
 description = "Trial balance and aging reports over a double-entry ledger — per-currency by construction, with the accounting equation as a runtime check"
@@ -11,7 +11,7 @@ categories = ["finance", "data-structures"]
 exclude = ["/target"]
 
 [dependencies]
-double-entry = "=0.1.0"
+double-entry = "=0.1.1"
 
 [lints.clippy]
 unwrap_used = "deny"

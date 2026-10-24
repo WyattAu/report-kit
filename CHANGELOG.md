@@ -5,6 +5,13 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-10-24
+
+### Changed
+
+- Tracks `double-entry 0.1.1` (docs-only upstream release, identical API). Pin move keeps one version in a consumer graph that binds 0.1.1.
+
+
 ## [0.2.0] - 2026-10-07
 
 Published in error: the statements module existed as a file but was never
