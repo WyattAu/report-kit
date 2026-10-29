@@ -13,6 +13,9 @@ exclude = ["/target"]
 [dependencies]
 double-entry = "=0.1.1"
 
+[dev-dependencies]
+proptest = "1"
+
 [lints.clippy]
 unwrap_used = "deny"
 expect_used = "deny"
