@@ -8,13 +8,14 @@
 #![allow(clippy::expect_used, clippy::panic)]
 
 use proptest::prelude::*;
-use report_kit::{AgedItem, AgingBucket, AgingReport, TrialBalance, TrialBalanceRow};
+use report_kit::{AgedItem, AgingReport, TrialBalance, TrialBalanceRow};
 
 /// A trial balance built from generated rows that always balance per
 /// currency: pairs of equal debit and credit rows.
 fn balanced_tb() -> impl Strategy<Value = (TrialBalance, String)> {
     (1u32..6u32, 0u32..3u32).prop_map(|(pair_count, currency_idx)| {
-        let currency = ["GBP", "USD", "JPY"][currency_idx as usize % 3].to_string();
+        let currencies = ["GBP", "USD", "JPY"];
+        let currency = currencies[currency_idx as usize % currencies.len()].to_string();
         let mut rows = Vec::new();
         let mut debit_total = 0i64;
         let mut credit_total = 0i64;
