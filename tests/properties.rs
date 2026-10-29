@@ -7,7 +7,6 @@
 
 #![allow(clippy::expect_used, clippy::panic)]
 
-use double_entry::AccountType;
 use proptest::prelude::*;
 use report_kit::{AgedItem, AgingBucket, AgingReport, TrialBalance, TrialBalanceRow};
 
