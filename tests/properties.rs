@@ -91,7 +91,7 @@ proptest! {
             report.add_item(item);
         }
         let buckets = report.buckets("GBP");
-        for (count, total) in &buckets {
+        for (_count, _total) in &buckets {
                 }
     }
 
