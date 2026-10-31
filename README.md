@@ -16,7 +16,7 @@ in JPY is reported as exactly that.
 `assets + expenses == liabilities + equity + revenue`, per currency, at any
 cut-off. It holds without closing entries because the period's result is still
 sitting in the revenue and expense accounts. A violation means the report was
-built over something that is not a balanced ledger — the correct response is to
+built over something that is not a balanced ledger; the correct response is to
 stop, never to fudge a row.
 
 **Aging buckets by how overdue, in the item's own currency.** The *due date*
@@ -31,14 +31,14 @@ counter-entry does the work. The cut-off is a `YYYY-MM-DD` string comparison,
 which is exact for that fixed-width format.
 
 **Abnormal sides are findable, not hidden.** A credit balance on a bank account
-is an overdraft — a real state. `TrialBalanceRow::is_on_normal_side` makes it a
+is an overdraft; a real state. `TrialBalanceRow::is_on_normal_side` makes it a
 predicate so a reader can find it, rather than a normalization that erases it.
 
 ## Dates
 
 Day arithmetic is Howard Hinnant's `days_from_civil`, an exact integer
 algorithm verified against known dates across leap years and century
-boundaries — no float epoch differences.
+boundaries; no float epoch differences.
 
 ## Licence
 

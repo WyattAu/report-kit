@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to this project are documented here. Format: [Keep a
-Changelog](https://keepachangelog.com/) — versions follow [semver](https://semver.org).
+Changelog](https://keepachangelog.com/); versions follow [semver](https://semver.org).
 
 ## [Unreleased]
 
@@ -16,20 +16,20 @@ Changelog](https://keepachangelog.com/) — versions follow [semver](https://sem
 
 Published in error: the statements module existed as a file but was never
 wired into `lib.rs`, so this release contained only 0.1.0's surface. Recorded
-here so nobody trusts the version number — the feature is 0.2.1.
+here so nobody trusts the version number; the feature is 0.2.1.
 
 ## [0.2.1] - 2026-10-07
 
 ### Added
 
-- `IncomeStatement` — revenue and expenses itemised per account, and the
+- `IncomeStatement`; revenue and expenses itemised per account, and the
   period's result.
-- `BalanceSheet` — assets, liabilities, posted equity, and the period's
+- `BalanceSheet`; assets, liabilities, posted equity, and the period's
   **retained result** carried where it actually is. A balance sheet drawn
   mid-period does not satisfy `assets == liabilities + equity` because the
   profit is still sitting in the revenue and expense accounts; the honest
   statement is `assets == liabilities + equity + retained result`, and the
-  retained result is the P&L's result by construction — one trial balance,
+  retained result is the P&L's result by construction; one trial balance,
   two statements, so a profit on one that is missing from the other cannot be
   expressed.
 - `is_balanced` refuses to plug an "unexplained difference" line: the sheet
@@ -42,13 +42,13 @@ Initial release.
 
 ### Added
 
-- `TrialBalance::from_ledger` — every `(account, currency)` pair named by a
+- `TrialBalance::from_ledger`; every `(account, currency)` pair named by a
   posted line, at a cut-off date. `is_balanced` checks per currency; the
   accounting equation (`assets + expenses == liabilities + equity + revenue`)
   is a runtime check, per currency.
-- `TrialBalanceRow::is_on_normal_side` — abnormal balances (overdrafts) are
+- `TrialBalanceRow::is_on_normal_side`; abnormal balances (overdrafts) are
   findable, not hidden.
-- `AgingReport` — receivables bucketed by how overdue, aging from the *due
+- `AgingReport`; receivables bucketed by how overdue, aging from the *due
   date* (net-60 terms are current for two months), totals per currency.
 - `days_between` via Hinnant's `days_from_civil`, pinned against leap years
   and century boundaries.
